@@ -31,29 +31,17 @@ public class AggregatedDashboardService {
         return null;
     }
 
-    private List<Widget> getWidgets(List<Offer> offers) {
+    private List<Widget> getWidgets(Offer offer) {
 
+        List<Bundle> bundles = offer.getBundles();
+        for (Bundle bundle : bundles) {
 
-        for (Offer offer : offers) {
-
-
+            //TODO
         }
 
         return null;
     }
-
-
-    /**
-     * @param bundles
-     * @return
-     */
-    private List<Widget> loopOnBundles(Map<ValueTag, Widget> widgetMap, List<Bundle> bundles) {
-
-
-
-        return null;
-    }
-
+    
     /**
      * @param tag
      * @param bundles
