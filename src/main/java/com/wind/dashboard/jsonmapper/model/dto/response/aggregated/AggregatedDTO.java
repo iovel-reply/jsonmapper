@@ -1,8 +1,9 @@
 package com.wind.dashboard.jsonmapper.model.dto.response.aggregated;
 
+import com.wind.dashboard.jsonmapper.enums.ValueTag;
 import lombok.*;
 
-import java.util.List;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -11,7 +12,7 @@ import java.util.List;
 @EqualsAndHashCode
 @ToString
 @Builder
-public class AggregatedResponse {
+public class AggregatedDTO {
     private Header header;
-    private List<Widget> widgets;
+    private Map<ValueTag, Widget> widgets;
 }

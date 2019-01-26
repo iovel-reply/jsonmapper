@@ -1,5 +1,6 @@
 package com.wind.dashboard.jsonmapper.exception;
 
+import com.wind.dashboard.jsonmapper.exception.enums.ErrorCode;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor

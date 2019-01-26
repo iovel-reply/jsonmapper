@@ -2,18 +2,14 @@ package com.wind.dashboard.jsonmapper.enums;
 
 public enum ValueTag {
 
-    SMS("SMS"),
-    DATA("DATA"),
-    VOICE("VOICE");
+    SMS("sms"),
+    DATA("data"),
+    VOICE("voice");
 
     private String value;
 
-    public String getName() {
-        return this.value;
-    }
-
     public String value() {
-        return value;
+        return this.value;
     }
 
     ValueTag(final String value) {

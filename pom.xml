@@ -52,8 +52,12 @@
             <artifactId>gson</artifactId>
         </dependency>
 
-
-        <!-- Client -->
+        <!-- Others -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
 
 
         <!-- Tools -->

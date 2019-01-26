@@ -22,7 +22,7 @@ import java.util.Map;
 public class Bundle {
 
     @JsonProperty("accumulated")
-    private Integer accumulated;
+    private Long accumulated;
     @JsonProperty("expiryDate")
     @JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private Date expiryDate;
@@ -32,7 +32,7 @@ public class Bundle {
     @JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private Date renewalDate;
     @JsonProperty("residual")
-    private Integer residual;
+    private Long residual;
     @JsonProperty("value")
     private String value;
     @JsonIgnore

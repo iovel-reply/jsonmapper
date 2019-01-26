@@ -5,27 +5,29 @@ import lombok.ToString;
 
 @EqualsAndHashCode
 @ToString
-public class SmsWidget implements Widget{
+public class SmsWidget implements Widget {
 
-    private int total;
-    private int residual;
+    private Long total = 0l;
+    private Long residual = 0l;
     private String text;
 
     @Override
-    public void setTotal(int total) { this.total = total; }
+    public void setTotal(Long total) {
+        this.total = total;
+    }
 
     @Override
-    public int getTotal() {
+    public Long getTotal() {
         return this.total;
     }
 
     @Override
-    public void setResidual(int residual) {
+    public void setResidual(Long residual) {
         this.residual = residual;
     }
 
     @Override
-    public int getResidual() {
+    public Long getResidual() {
         return this.residual;
     }
 

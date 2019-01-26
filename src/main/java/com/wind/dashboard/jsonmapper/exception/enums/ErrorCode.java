@@ -1,4 +1,4 @@
-package com.wind.dashboard.jsonmapper.exception;
+package com.wind.dashboard.jsonmapper.exception.enums;
 
 /**
  * The Interface ErrorCode.
