@@ -1,4 +1,4 @@
-package com.wind.dashboard.jsonmapper.model.dto.response.detail;
+package com.wind.dashboard.jsonmapper.model.dto.aggregated;
 
 
 import lombok.*;
@@ -11,6 +11,6 @@ import lombok.*;
 @EqualsAndHashCode
 public class Header {
 
-    private Long total;
-    private Long residual;
+    private String msisdn;
+    private String credit;
 }

@@ -1,11 +1,10 @@
-package com.wind.dashboard.jsonmapper.model.dto.response.detail;
+package com.wind.dashboard.jsonmapper.model.dto.detail;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 
-
-public class DataWidget implements Widget {
+public class VoiceWidget implements DetailWidget {
     private String name;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private Date expiryDate;
@@ -62,4 +61,5 @@ public class DataWidget implements Widget {
     public void setText(String text) {
         this.text = text;
     }
+
 }

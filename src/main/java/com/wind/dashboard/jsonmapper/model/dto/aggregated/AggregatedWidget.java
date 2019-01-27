@@ -1,6 +1,6 @@
-package com.wind.dashboard.jsonmapper.model.dto.response.aggregated;
+package com.wind.dashboard.jsonmapper.model.dto.aggregated;
 
-public interface Widget {
+public interface AggregatedWidget {
 
     void setTotal(Long total);
 

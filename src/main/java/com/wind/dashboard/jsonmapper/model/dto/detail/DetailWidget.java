@@ -1,8 +1,8 @@
-package com.wind.dashboard.jsonmapper.model.dto.response.detail;
+package com.wind.dashboard.jsonmapper.model.dto.detail;
 
 import java.util.Date;
 
-public interface Widget {
+public interface DetailWidget {
     String getName();
 
     void setName(String name);
