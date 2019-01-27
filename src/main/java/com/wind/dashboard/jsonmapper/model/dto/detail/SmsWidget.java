@@ -10,7 +10,7 @@ public class SmsWidget implements DetailWidget {
     private Date expiryDate;
     private Long residual = 0l;
     private Long total = 0l;
-    private String text;
+    private String text = "{residual} SMS rimasti di {total} SMS";
 
     @Override
     public String getName() {
@@ -58,7 +58,8 @@ public class SmsWidget implements DetailWidget {
     }
 
     @Override
-    public void setText(String textl) {
-        this.text = text;
+    public void setText(Long residual, Long total) {
+        this.text = text.replace("{residual}", String.valueOf(residual))
+                .replace("{total}", String.valueOf(total));
     }
 }

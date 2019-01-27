@@ -51,11 +51,13 @@ public class AggregatedService {
      * @return
      */
     private Map<WidgetType, AggregatedWidget> getWidgets(Map<WidgetType, AggregatedWidget> widgetMap, Offer offer) {
-        LOGGER.warn("TODO");
+        LOGGER.debug("TODO");
         List<Bundle> bundles = offer.getBundles();
-        widgetMap.entrySet().stream().forEach(element -> {
-            element.setValue(getValues(element.getValue(), element.getKey(), bundles));
-        });
+        for (Map.Entry<WidgetType, AggregatedWidget> element : widgetMap.entrySet()) {
+            AggregatedWidget value = element.getValue();
+            WidgetType key = element.getKey();
+            element.setValue(getValues(value, key, bundles));
+        }
 
         return widgetMap;
     }
@@ -67,7 +69,7 @@ public class AggregatedService {
      * @return
      */
     private AggregatedWidget getValues(AggregatedWidget widget, WidgetType tag, List<Bundle> bundles) {
-        LOGGER.warn("TODO");
+        LOGGER.debug("TODO");
         Long residual = bundles.stream()
                 .filter(bundle -> tag.toString().equalsIgnoreCase(bundle.getValue()))
                 .mapToLong(Bundle::getResidual).sum();
@@ -80,6 +82,14 @@ public class AggregatedService {
 
         widget.setTotal(total);
         widget.setResidual(residual);
+        widget.setText(residual, total);
+
+        if("DATA".equalsIgnoreCase(tag.toString())) {
+            LOGGER.info("Debug SMS");
+            LOGGER.info("Total {}", widget.getTotal());
+            LOGGER.info("Residual {}", widget.getResidual());
+            LOGGER.info("Text {}", widget.getText());
+        }
 
         return widget;
     }

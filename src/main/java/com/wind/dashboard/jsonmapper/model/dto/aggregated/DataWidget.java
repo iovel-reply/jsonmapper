@@ -1,6 +1,7 @@
 package com.wind.dashboard.jsonmapper.model.dto.aggregated;
 
 
+import com.wind.dashboard.jsonmapper.utils.ConverterUtils;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
@@ -10,12 +11,7 @@ public class DataWidget implements AggregatedWidget {
 
     private Long total = 0l;
     private Long residual = 0l;
-    private String text;
-
-    @Override
-    public void setTotal(Long total) {
-        this.total = total;
-    }
+    private String text = "{residual} GB rimasti di {total} GB";
 
     @Override
     public Long getTotal() {
@@ -23,8 +19,8 @@ public class DataWidget implements AggregatedWidget {
     }
 
     @Override
-    public void setResidual(Long residual) {
-        this.residual = residual;
+    public void setTotal(Long total) {
+        this.total = total;
     }
 
     @Override
@@ -33,12 +29,18 @@ public class DataWidget implements AggregatedWidget {
     }
 
     @Override
-    public void setText(String text) {
-        this.text = text;
+    public void setResidual(Long residual) {
+        this.residual = residual;
     }
 
     @Override
     public String getText() {
         return this.text;
+    }
+
+    @Override
+    public void setText(Long residual, Long total) {
+        this.text = text.replace("{residual}", ConverterUtils.toGB(residual))
+                .replace("{total}", ConverterUtils.toGB(total));
     }
 }

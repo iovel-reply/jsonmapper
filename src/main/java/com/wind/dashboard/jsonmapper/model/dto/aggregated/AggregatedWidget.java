@@ -2,15 +2,15 @@ package com.wind.dashboard.jsonmapper.model.dto.aggregated;
 
 public interface AggregatedWidget {
 
-    void setTotal(Long total);
-
     Long getTotal();
 
-    void setResidual(Long left);
+    void setTotal(Long total);
 
     Long getResidual();
 
-    void setText(String text);
+    void setResidual(Long left);
 
     String getText();
+
+    void setText(Long residual, Long total);
 }

@@ -1,6 +1,7 @@
 package com.wind.dashboard.jsonmapper.model.dto.detail;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.wind.dashboard.jsonmapper.utils.ConverterUtils;
 
 import java.util.Date;
 
@@ -11,7 +12,7 @@ public class DataWidget implements DetailWidget {
     private Date expiryDate;
     private Long residual = 0l;
     private Long total = 0l;
-    private String text;
+    private String text = "{residual} GB rimasti di {total} GB";
 
     @Override
     public String getName() {
@@ -59,7 +60,8 @@ public class DataWidget implements DetailWidget {
     }
 
     @Override
-    public void setText(String text) {
-        this.text = text;
+    public void setText(Long residual, Long total) {
+        this.text = text.replace("{residual}", ConverterUtils.toGB(residual))
+                .replace("{total}", ConverterUtils.toGB(total));
     }
 }

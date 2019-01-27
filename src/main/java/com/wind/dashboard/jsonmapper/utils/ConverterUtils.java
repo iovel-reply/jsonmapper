@@ -8,7 +8,7 @@ public class ConverterUtils {
      * @return
      */
     public static String toGB(long size) {
-        double gb = size /  (1024 * 1024 * 1024);
+        double gb = size /  (1024.0 * 1024.0 * 1024.0);
         return String.format("%.2f", gb);
     }
 }

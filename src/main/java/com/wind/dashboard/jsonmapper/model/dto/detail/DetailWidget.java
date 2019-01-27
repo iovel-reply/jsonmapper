@@ -21,5 +21,5 @@ public interface DetailWidget {
 
     String getText();
 
-    void setText(String text);
+    void setText(Long residual, Long total);
 }

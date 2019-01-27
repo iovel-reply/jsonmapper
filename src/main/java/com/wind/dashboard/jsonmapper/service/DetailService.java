@@ -73,13 +73,17 @@ public class DetailService {
         widget.setName(offer.getName());
 
         List<Bundle> bundles = offer.getBundles();
-        bundles.stream().filter(bundle -> type.toString().equalsIgnoreCase(bundle.getValue())).forEach(bundle -> {
-            widget.setExpiryDate(bundle.getExpiryDate());
-            Long residual = bundle.getResidual();
-            Long total = residual + bundle.getAccumulated();
-            widget.setResidual(residual);
-            widget.setTotal(total);
-        });
+        for (Bundle bundle : bundles) {
+            if (type.toString().equalsIgnoreCase(bundle.getValue())) {
+                widget.setExpiryDate(bundle.getExpiryDate());
+                Long residual = bundle.getResidual();
+                Long total = residual + bundle.getAccumulated();
+                widget.setResidual(residual);
+                widget.setTotal(total);
+            }
+        }
+
+        widget.setText(widget.getResidual(), widget.getTotal());
 
         return widget;
     }

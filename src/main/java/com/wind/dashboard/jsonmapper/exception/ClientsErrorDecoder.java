@@ -25,8 +25,8 @@ public class ClientsErrorDecoder implements ErrorDecoder {
                 final String reason = response.reason() != null ? response.reason() : "Empty body response in decoder";
                 apiResponse = new ApiResponse(String.valueOf(response.status()), ResponseType.ERROR.value(), reason);
             }
-        } catch (final IOException ioe) {
-            ClientsErrorDecoder.LOGGER.warn("Exception in error decoder: {}", ioe.getMessage());
+        } catch (final IOException e) {
+            ClientsErrorDecoder.LOGGER.warn("Exception in error decoder: {}", e.getMessage());
         }
         return new JsonMapperException(new FeignErrorCode(apiResponse.getMessage(), apiResponse.getCode()));
     }
