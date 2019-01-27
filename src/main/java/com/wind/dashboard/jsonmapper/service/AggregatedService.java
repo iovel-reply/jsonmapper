@@ -46,6 +46,8 @@ public class AggregatedService {
     }
 
     /**
+     * Wrapper for bundles loop
+     *
      * @param widgetMap
      * @param offer
      * @return
@@ -63,13 +65,15 @@ public class AggregatedService {
     }
 
     /**
+     * Compute residual value and total value for each widget into all bundles
+     *
      * @param widget
      * @param tag
      * @param bundles
      * @return
      */
     private AggregatedWidget getValues(AggregatedWidget widget, WidgetType tag, List<Bundle> bundles) {
-        LOGGER.debug("TODO");
+        LOGGER.debug("Getting bundle values");
         Long residual = bundles.stream()
                 .filter(bundle -> tag.toString().equalsIgnoreCase(bundle.getValue()))
                 .mapToLong(Bundle::getResidual).sum();
@@ -84,17 +88,12 @@ public class AggregatedService {
         widget.setResidual(residual);
         widget.setText(residual, total);
 
-        if("DATA".equalsIgnoreCase(tag.toString())) {
-            LOGGER.info("Debug SMS");
-            LOGGER.info("Total {}", widget.getTotal());
-            LOGGER.info("Residual {}", widget.getResidual());
-            LOGGER.info("Text {}", widget.getText());
-        }
-
         return widget;
     }
 
     /**
+     * Init widget map, that has to be added AggregatedDTO object
+     *
      * @return
      */
     private Map<WidgetType, AggregatedWidget> initMap() {

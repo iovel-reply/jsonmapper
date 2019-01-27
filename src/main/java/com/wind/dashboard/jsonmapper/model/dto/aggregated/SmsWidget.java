@@ -1,5 +1,6 @@
 package com.wind.dashboard.jsonmapper.model.dto.aggregated;
 
+import com.wind.dashboard.jsonmapper.utils.ConverterUtils;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
@@ -9,7 +10,7 @@ public class SmsWidget implements AggregatedWidget {
 
     private Long total = 0l;
     private Long residual = 0l;
-    private String text = "{residual} SMS rimasti di {total} SMS";
+    private String text;
 
     @Override
     public Long getTotal() {
@@ -38,7 +39,10 @@ public class SmsWidget implements AggregatedWidget {
 
     @Override
     public void setText(Long residual, Long total) {
-        this.text = text.replace("{residual}", String.valueOf(residual))
-                .replace("{total}", String.valueOf(total));
+        StringBuilder text = new StringBuilder();
+        text.append(residual)
+                .append(" SMS rimasti di ")
+                .append(total).append(" SMS");
+        this.text = text.toString();
     }
 }

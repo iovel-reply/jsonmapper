@@ -10,7 +10,7 @@ public class VoiceWidget implements AggregatedWidget {
 
     private Long total = 0l;
     private Long residual = 0l;
-    private String text = "{residual} minuti rimasti di {total} minuti";
+    private String text;
 
     @Override
     public Long getTotal() {
@@ -36,9 +36,13 @@ public class VoiceWidget implements AggregatedWidget {
     public String getText() {
         return this.text;
     }
+
     @Override
     public void setText(Long residual, Long total) {
-        this.text = text.replace("{residual}", String.valueOf(residual))
-                .replace("{total}", String.valueOf(total));
+        StringBuilder text = new StringBuilder();
+        text.append(residual)
+                .append(" minuti rimasti di ")
+                .append(total).append(" minuti");
+        this.text = text.toString();
     }
 }

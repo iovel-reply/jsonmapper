@@ -10,7 +10,7 @@ public class VoiceWidget implements DetailWidget {
     private Date expiryDate;
     private Long residual = 0l;
     private Long total = 0l;
-    private String text = "{residual} minuti rimasti di {total} minuti";
+    private String text;
 
     @Override
     public String getName() {
@@ -59,7 +59,10 @@ public class VoiceWidget implements DetailWidget {
 
     @Override
     public void setText(Long residual, Long total) {
-        this.text = text.replace("{residual}", String.valueOf(residual))
-        .replace("{total}", String.valueOf(total));
+        StringBuilder text = new StringBuilder();
+        text.append(residual)
+                .append(" minuti rimasti di ")
+                .append(total).append(" minuti");
+        this.text = text.toString();
     }
 }

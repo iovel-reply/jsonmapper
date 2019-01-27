@@ -12,7 +12,7 @@ public class DataWidget implements DetailWidget {
     private Date expiryDate;
     private Long residual = 0l;
     private Long total = 0l;
-    private String text = "{residual} GB rimasti di {total} GB";
+    private String text;
 
     @Override
     public String getName() {
@@ -61,7 +61,10 @@ public class DataWidget implements DetailWidget {
 
     @Override
     public void setText(Long residual, Long total) {
-        this.text = text.replace("{residual}", ConverterUtils.toGB(residual))
-                .replace("{total}", ConverterUtils.toGB(total));
+        StringBuilder text = new StringBuilder();
+        text.append(ConverterUtils.toGB(residual))
+                .append(" GB rimasti di ")
+                .append(ConverterUtils.toGB(total)).append(" GB");
+        this.text = text.toString();
     }
 }

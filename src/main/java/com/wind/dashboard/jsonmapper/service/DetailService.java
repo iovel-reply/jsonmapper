@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -35,22 +36,19 @@ public class DetailService {
         try {
             WidgetType type = WidgetType.valueOf(value.toUpperCase());
 
-            List<DetailWidget> widgets = new ArrayList<>();
+            List<DetailWidget> widgets;
             List<Offer> offers = data.getOffers();
-            for (Offer offer : offers) {
-                DetailWidget widget = getWidget(offer, type);
-                if (widget.getTotal() != 0) {
-                    widgets.add(widget);
-                }
-            }
+            widgets = offers.stream().map(offer -> getWidget(offer, type)).filter(widget -> widget.getTotal() != 0).collect(Collectors.toList());
 
             Long residual = widgets.stream().mapToLong(widget -> widget.getResidual()).sum();
             Long total = widgets.stream().mapToLong(widget -> widget.getTotal()).sum();
+
             Header header = new Header(total, residual);
 
             DetailDTO response = DetailDTO.builder()
                     .header(header)
                     .widgets(widgets).build();
+
             return response;
         } catch (IllegalArgumentException e) {
             LOGGER.error("//TODO");
