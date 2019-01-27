@@ -39,10 +39,6 @@ public class SmsWidget implements AggregatedWidget {
 
     @Override
     public void setText(Long residual, Long total) {
-        StringBuilder text = new StringBuilder();
-        text.append(residual)
-                .append(" SMS rimasti di ")
-                .append(total).append(" SMS");
-        this.text = text.toString();
+        this.text = residual + " SMS rimasti di " + total + " SMS";
     }
 }

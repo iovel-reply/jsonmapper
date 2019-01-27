@@ -61,10 +61,6 @@ public class DataWidget implements DetailWidget {
 
     @Override
     public void setText(Long residual, Long total) {
-        StringBuilder text = new StringBuilder();
-        text.append(ConverterUtils.toGB(residual))
-                .append(" GB rimasti di ")
-                .append(ConverterUtils.toGB(total)).append(" GB");
-        this.text = text.toString();
+        this.text = ConverterUtils.toGB(residual) + " GB rimasti di " + ConverterUtils.toGB(total) + " GB";
     }
 }
