@@ -5,7 +5,7 @@ import lombok.ToString;
 
 @EqualsAndHashCode
 @ToString
-public class SmsWidget implements Widget {
+public class SmsWidget implements AggregatedWidget {
 
     private Long total = 0l;
     private Long residual = 0l;

@@ -9,9 +9,8 @@ import com.wind.dashboard.jsonmapper.model.dto.input.Offer;
 import com.wind.dashboard.jsonmapper.model.dto.input.UserData;
 import com.wind.dashboard.jsonmapper.model.dto.response.detail.DetailDTO;
 import com.wind.dashboard.jsonmapper.model.dto.response.detail.Header;
-import com.wind.dashboard.jsonmapper.model.dto.response.detail.Widget;
-import com.wind.dashboard.jsonmapper.model.dto.response.detail.WidgetFactory;
-import com.wind.dashboard.jsonmapper.utils.ConverterUtils;
+import com.wind.dashboard.jsonmapper.model.dto.response.detail.DetailWidget;
+import com.wind.dashboard.jsonmapper.model.dto.response.DetailWidgetFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +23,7 @@ import java.util.List;
 @Service
 public class DetailService {
     private static final Logger LOGGER = LoggerFactory.getLogger(DetailService.class);
-    private static WidgetFactory factory = new WidgetFactory();
+    private static DetailWidgetFactory factory = new DetailWidgetFactory();
 
     /**
      * @param data
@@ -36,10 +35,10 @@ public class DetailService {
         try {
             ValueTag tag = ValueTag.valueOf(value.toUpperCase());
 
-            List<Widget> widgets = new ArrayList<>();
+            List<DetailWidget> widgets = new ArrayList<>();
             List<Offer> offers = data.getOffers();
             for (Offer offer : offers) {
-                Widget widget = getWidget(offer, tag);
+                DetailWidget widget = getWidget(offer, tag);
                 if (widget.getTotal() != 0) {
                     widgets.add(widget);
                 }
@@ -68,9 +67,9 @@ public class DetailService {
      * @param tag
      * @return
      */
-    private Widget getWidget(Offer offer, ValueTag tag) {
+    private DetailWidget getWidget(Offer offer, ValueTag tag) {
         LOGGER.debug("//TODO");
-        Widget widget = factory.getWidget(tag);
+        DetailWidget widget = factory.getWidget(tag);
         widget.setName(offer.getName());
 
         List<Bundle> bundles = offer.getBundles();

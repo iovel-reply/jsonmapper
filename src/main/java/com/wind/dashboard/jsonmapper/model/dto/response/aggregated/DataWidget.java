@@ -6,7 +6,7 @@ import lombok.ToString;
 
 @EqualsAndHashCode
 @ToString
-public class DataWidget implements Widget {
+public class DataWidget implements AggregatedWidget {
 
     private Long total = 0l;
     private Long residual = 0l;

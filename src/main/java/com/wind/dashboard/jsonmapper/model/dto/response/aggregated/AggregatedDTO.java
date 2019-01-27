@@ -14,5 +14,5 @@ import java.util.Map;
 @Builder
 public class AggregatedDTO {
     private Header header;
-    private Map<ValueTag, Widget> widgets;
+    private Map<ValueTag, AggregatedWidget> widgets;
 }

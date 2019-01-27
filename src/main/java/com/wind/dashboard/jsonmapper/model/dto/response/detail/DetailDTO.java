@@ -13,5 +13,5 @@ import java.util.List;
 @Builder
 public class DetailDTO {
     private Header header;
-    private List<Widget> widgets;
+    private List<DetailWidget> widgets;
 }
