@@ -1,4 +1,4 @@
-package com.wind.dashboard.jsonmapper.model.dto.response.detail;
+package com.wind.dashboard.jsonmapper.model.dto.detail;
 
 import lombok.*;
 

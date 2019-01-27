@@ -1,6 +1,6 @@
-package com.wind.dashboard.jsonmapper.model.dto.response.aggregated;
+package com.wind.dashboard.jsonmapper.model.dto.aggregated;
 
-import com.wind.dashboard.jsonmapper.enums.ValueTag;
+import com.wind.dashboard.jsonmapper.enums.WidgetType;
 import lombok.*;
 
 import java.util.Map;
@@ -14,5 +14,5 @@ import java.util.Map;
 @Builder
 public class AggregatedDTO {
     private Header header;
-    private Map<ValueTag, AggregatedWidget> widgets;
+    private Map<WidgetType, AggregatedWidget> widgets;
 }

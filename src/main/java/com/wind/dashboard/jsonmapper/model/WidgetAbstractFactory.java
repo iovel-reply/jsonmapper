@@ -1,4 +1,4 @@
-package com.wind.dashboard.jsonmapper.model.dto.response;
+package com.wind.dashboard.jsonmapper.model;
 
 import com.wind.dashboard.jsonmapper.enums.WidgetType;
 

@@ -1,19 +1,23 @@
 package com.wind.dashboard.jsonmapper.service;
 
-import com.wind.dashboard.jsonmapper.enums.ValueTag;
+import com.wind.dashboard.jsonmapper.enums.WidgetType;
+import com.wind.dashboard.jsonmapper.enums.WidgetType;
 import com.wind.dashboard.jsonmapper.model.dto.input.Bundle;
 import com.wind.dashboard.jsonmapper.model.dto.input.Offer;
 import com.wind.dashboard.jsonmapper.model.dto.input.UserData;
-import com.wind.dashboard.jsonmapper.model.dto.response.aggregated.AggregatedDTO;
-import com.wind.dashboard.jsonmapper.model.dto.response.aggregated.Header;
-import com.wind.dashboard.jsonmapper.model.dto.response.aggregated.AggregatedWidget;
-import com.wind.dashboard.jsonmapper.model.dto.response.AggregatedWidgetFactory;
+import com.wind.dashboard.jsonmapper.model.AggregatedWidgetFactory;
+import com.wind.dashboard.jsonmapper.model.dto.aggregated.AggregatedDTO;
+import com.wind.dashboard.jsonmapper.model.dto.aggregated.AggregatedWidget;
+import com.wind.dashboard.jsonmapper.model.dto.aggregated.Header;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -27,7 +31,7 @@ public class AggregatedService {
      */
     public AggregatedDTO getDashboard(UserData data) {
         LOGGER.info("Computing new Aggregated Dashboard");
-        Map<ValueTag, AggregatedWidget> widgetMap = initMap();
+        Map<WidgetType, AggregatedWidget> widgetMap = initMap();
 
         List<Offer> offers = data.getOffers();
         for (Offer offer : offers) {
@@ -46,7 +50,7 @@ public class AggregatedService {
      * @param offer
      * @return
      */
-    private Map<ValueTag, AggregatedWidget> getWidgets(Map<ValueTag, AggregatedWidget> widgetMap, Offer offer) {
+    private Map<WidgetType, AggregatedWidget> getWidgets(Map<WidgetType, AggregatedWidget> widgetMap, Offer offer) {
         LOGGER.warn("TODO");
         List<Bundle> bundles = offer.getBundles();
         widgetMap.entrySet().stream().forEach(element -> {
@@ -62,13 +66,13 @@ public class AggregatedService {
      * @param bundles
      * @return
      */
-    private AggregatedWidget getValues(AggregatedWidget widget, ValueTag tag, List<Bundle> bundles) {
+    private AggregatedWidget getValues(AggregatedWidget widget, WidgetType tag, List<Bundle> bundles) {
         LOGGER.warn("TODO");
         Long residual = bundles.stream()
-                .filter(bundle -> tag.value().equals(bundle.getValue().toLowerCase()))
+                .filter(bundle -> tag.toString().equalsIgnoreCase(bundle.getValue()))
                 .mapToLong(Bundle::getResidual).sum();
         Long accumulated = bundles.stream()
-                .filter(bundle -> tag.value().equals(bundle.getValue().toLowerCase()))
+                .filter(bundle -> tag.toString().equalsIgnoreCase(bundle.getValue()))
                 .mapToLong(Bundle::getAccumulated).sum();
 
         Long total = widget.getTotal() + residual + accumulated;
@@ -83,11 +87,11 @@ public class AggregatedService {
     /**
      * @return
      */
-    private Map<ValueTag, AggregatedWidget> initMap() {
-        Map<ValueTag, AggregatedWidget> widgetMap = new HashMap<>();
-        Arrays.stream(ValueTag.values()).forEach(tag -> {
-            AggregatedWidget widget = factory.getWidget(tag);
-            widgetMap.put(tag, widget);
+    private Map<WidgetType, AggregatedWidget> initMap() {
+        Map<WidgetType, AggregatedWidget> widgetMap = new HashMap<>();
+        Arrays.stream(WidgetType.values()).forEach(type -> {
+            AggregatedWidget widget = factory.create(type);
+            widgetMap.put(type, widget);
         });
 
         return widgetMap;

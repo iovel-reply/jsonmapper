@@ -1,4 +1,4 @@
-package com.wind.dashboard.jsonmapper.model.dto.response.aggregated;
+package com.wind.dashboard.jsonmapper.model.dto.aggregated;
 
 import lombok.EqualsAndHashCode;
 import lombok.ToString;

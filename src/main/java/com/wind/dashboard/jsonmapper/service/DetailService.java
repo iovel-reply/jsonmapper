@@ -1,16 +1,16 @@
 package com.wind.dashboard.jsonmapper.service;
 
-import com.wind.dashboard.jsonmapper.enums.ValueTag;
+import com.wind.dashboard.jsonmapper.enums.WidgetType;
 import com.wind.dashboard.jsonmapper.exception.BadRequestException;
 import com.wind.dashboard.jsonmapper.exception.JsonMapperException;
 import com.wind.dashboard.jsonmapper.exception.enums.BadRequestErrorCode;
 import com.wind.dashboard.jsonmapper.model.dto.input.Bundle;
 import com.wind.dashboard.jsonmapper.model.dto.input.Offer;
 import com.wind.dashboard.jsonmapper.model.dto.input.UserData;
-import com.wind.dashboard.jsonmapper.model.dto.response.detail.DetailDTO;
-import com.wind.dashboard.jsonmapper.model.dto.response.detail.Header;
-import com.wind.dashboard.jsonmapper.model.dto.response.detail.DetailWidget;
-import com.wind.dashboard.jsonmapper.model.dto.response.DetailWidgetFactory;
+import com.wind.dashboard.jsonmapper.model.dto.detail.DetailDTO;
+import com.wind.dashboard.jsonmapper.model.dto.detail.Header;
+import com.wind.dashboard.jsonmapper.model.dto.detail.DetailWidget;
+import com.wind.dashboard.jsonmapper.model.DetailWidgetFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,12 +33,12 @@ public class DetailService {
     public DetailDTO getDashboard(UserData data, String value) throws JsonMapperException {
         LOGGER.info("//TODO");
         try {
-            ValueTag tag = ValueTag.valueOf(value.toUpperCase());
+            WidgetType type = WidgetType.valueOf(value.toUpperCase());
 
             List<DetailWidget> widgets = new ArrayList<>();
             List<Offer> offers = data.getOffers();
             for (Offer offer : offers) {
-                DetailWidget widget = getWidget(offer, tag);
+                DetailWidget widget = getWidget(offer, type);
                 if (widget.getTotal() != 0) {
                     widgets.add(widget);
                 }
@@ -64,16 +64,16 @@ public class DetailService {
 
     /**
      * @param offer
-     * @param tag
+     * @param type
      * @return
      */
-    private DetailWidget getWidget(Offer offer, ValueTag tag) {
+    private DetailWidget getWidget(Offer offer, WidgetType type) {
         LOGGER.debug("//TODO");
-        DetailWidget widget = factory.getWidget(tag);
+        DetailWidget widget = factory.create(type);
         widget.setName(offer.getName());
 
         List<Bundle> bundles = offer.getBundles();
-        bundles.stream().filter(bundle -> tag.value().equals(bundle.getValue().toLowerCase())).forEach(bundle -> {
+        bundles.stream().filter(bundle -> type.toString().equalsIgnoreCase(bundle.getValue())).forEach(bundle -> {
             widget.setExpiryDate(bundle.getExpiryDate());
             Long residual = bundle.getResidual();
             Long total = residual + bundle.getAccumulated();

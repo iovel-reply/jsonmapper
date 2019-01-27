@@ -1,11 +1,11 @@
-package com.wind.dashboard.jsonmapper.model.dto.response;
+package com.wind.dashboard.jsonmapper.model;
 
 
 import com.wind.dashboard.jsonmapper.enums.WidgetType;
-import com.wind.dashboard.jsonmapper.model.dto.response.detail.DataWidget;
-import com.wind.dashboard.jsonmapper.model.dto.response.detail.DetailWidget;
-import com.wind.dashboard.jsonmapper.model.dto.response.detail.SmsWidget;
-import com.wind.dashboard.jsonmapper.model.dto.response.detail.VoiceWidget;
+import com.wind.dashboard.jsonmapper.model.dto.detail.DataWidget;
+import com.wind.dashboard.jsonmapper.model.dto.detail.DetailWidget;
+import com.wind.dashboard.jsonmapper.model.dto.detail.SmsWidget;
+import com.wind.dashboard.jsonmapper.model.dto.detail.VoiceWidget;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor

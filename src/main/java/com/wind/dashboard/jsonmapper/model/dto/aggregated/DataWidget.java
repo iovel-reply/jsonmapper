@@ -1,12 +1,12 @@
-package com.wind.dashboard.jsonmapper.model.dto.response.aggregated;
+package com.wind.dashboard.jsonmapper.model.dto.aggregated;
+
 
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-
 @EqualsAndHashCode
 @ToString
-public class VoiceWidget implements AggregatedWidget {
+public class DataWidget implements AggregatedWidget {
 
     private Long total = 0l;
     private Long residual = 0l;
